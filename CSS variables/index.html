@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> CSS variables</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+    <main>
+        <div class="title">
+            <h1>
+                Update CSS Variables with <span>JS</span>
+            </h1>
+        </div>
+        <div class="controls">
+            <label for="spacing">Spacing:</label>
+            <input type="range" name="spacing" min="10" max="200" value="10" data-sizing="px">
+
+            <label for="blur">Blur:</label>
+            <input type="range" name="blur" min="0" max="25" value="10" data-sizing="px">
+
+            <label for="base">Base Color:</label>
+            <input type="color" name="base" value="#ffc600">
+        </div>
+
+        <div class="picture">
+            <img src="background.jpeg" alt="A girl on a mountain">
+        </div>
+
+        <script>
+            
+            const inputs = document.querySelectorAll(".controls input");
+            function handleUpdate() {
+                const suffix = this.dataset.sizing || "";
+                document.documentElement.style.setProperty(`--${this.name}`, this.value + suffix)
+            }
+
+            inputs.forEach(input => input.addEventListener("change", handleUpdate));
+            inputs.forEach(input => input.addEventListener("mousemove", handleUpdate));
+        </script>
+    </main>
+</body>
+
+</html>
